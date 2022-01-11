@@ -9,6 +9,7 @@ import {map} from 'rxjs/operators';
 })
 export class ProductService {
 
+
   private baseUrl='http://localhost:8080/api/products';
 
   constructor(private httpClient: HttpClient) { }
@@ -26,6 +27,11 @@ export class ProductService {
     );
   }
 }
+
+  getProductCategories() {
+    throw new Error('Method not implemented.');
+  }
+
 
 // unwraps the JSOn from Spring Data Rest _embedded entry
 interface GetResponse{
