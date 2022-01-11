@@ -11,10 +11,13 @@
                 <a href="#" class="primary-btn">Add to cart</a>
               </div>
         </div>
+        <!-- if products empty then display a message -->
+        <!-- role accessibillity: provides extra info to assistive tec such as screen readers -->
+        <!-- the ? is a safe navigator operator. it guards against null and udefined values in property paths -->
+        <div *ngIf="products?.length == 0" class="alert alert-warning col-md-12" role="alert">
+          No products found.
+        </div>
       </div>
-
     </div>
-
   </div>
-
 </div>
