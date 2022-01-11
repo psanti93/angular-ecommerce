@@ -11,6 +11,8 @@ import { ProductCategory } from '../common/product-category';
 export class ProductService {
 
 
+
+
   private baseUrl='http://localhost:8080/api/products';
   private categoryUrl = "http://localhost:8080/api/product-category";
 
@@ -22,11 +24,14 @@ export class ProductService {
 
     // build url based on category id
     const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}`;
+    return this.getProducts(searchUrl);
+  }
 
-    return this.httpClient.get<GetResponseProducts>(searchUrl).pipe(
-      // _embedded is the top level object with products as the array
-      map(response => response._embedded.products)
-    );
+  searchProducts(theKeyword: string): Observable<Product[]> {
+    // build url based on theKeyword
+    const searchUrl = `${this.baseUrl}/search/findByNameContaining?name=${theKeyword}`;
+    return this.getProducts(searchUrl);
+
   }
 
   getProductCategories(): Observable<ProductCategory[]> {
@@ -34,6 +39,16 @@ export class ProductService {
       map(response => response._embedded.productCategory)
     );
   }
+
+  private getProducts(searchUrl: string): Observable<Product[]>{
+
+    return this.httpClient.get<GetResponseProducts>(searchUrl).pipe(
+      // _embedded is the top level object with products as the array
+      map(response => response._embedded.products)
+    );
+  }
+
+
 }
 
 // unwraps the JSOn from Spring Data Rest _embedded entry for products
