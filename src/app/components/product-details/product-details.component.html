@@ -1,5 +1,6 @@
 <div class="detail-section">
   <div class="container-fluid">
+    <!-- other solution to resolve race condition product with a question mark product?.imageUrl although tedious -->
     <img src="{{ product.imageUrl}}" class="detail-img">
     <h3>{{ product.name }}</h3>
     <div class="price">{{ product.unitPrice | currency: 'USD'}}
