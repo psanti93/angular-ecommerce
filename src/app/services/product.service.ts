@@ -9,6 +9,9 @@ import { ProductCategory } from '../common/product-category';
   providedIn: 'root'
 })
 export class ProductService {
+  getProduct(theProductId: number) {
+    throw new Error('Method not implemented.');
+  }
 
 
 
