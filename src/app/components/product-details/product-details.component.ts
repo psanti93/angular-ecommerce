@@ -25,6 +25,9 @@ export class ProductDetailsComponent implements OnInit {
 
     this.productService.getProduct(theProductId).subscribe(
       data => {
+        //property is not assigned a value until data arrives from the ProductService method call. async call
+        //This is known as a race condition. The HTML template file is attempting to access pronewProperty
+        // product.imageUrl but the product is  not assigned yet hence the error: TypeError: Cannot read properties of undefined
         this.product = data;
       }
     )
