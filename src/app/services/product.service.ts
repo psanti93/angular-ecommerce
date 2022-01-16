@@ -65,7 +65,7 @@ export class ProductService {
 }
 
 // unwraps the JSOn from Spring Data Rest _embedded entry for products
-interface GetResponseProducts{
+export interface GetResponseProducts{
   _embedded: {
     products: Product [];
   },
