@@ -93,5 +93,11 @@ export class ProductListComponent implements OnInit {
 
     }
   }
+  // maps to the the drop down to map to page size
+  updatePageSize(pageSize: number){
+    this.thePageSize = pageSize;
+    this.thePageNumber=1;
+    this.listProducts();
+  }
 
 }
