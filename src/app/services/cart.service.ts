@@ -7,6 +7,8 @@ import { CartItem } from '../common/cart-item';
 })
 export class CartService {
 
+
+
   cartItems: CartItem[] = [];
 
   // Subject is a subclass of observable. We can use it to publishe events in our code.
@@ -73,6 +75,28 @@ export class CartService {
 
     console.log(`totalPrice: ${totalPriceValue.toFixed(2)}, totalQuantity: ${totalQuanityValue}`);
     console.log('----------')
+  }
+
+  decrementQuantity(theCartItem: CartItem) {
+    theCartItem.quantity--;
+    if(theCartItem.quantity === 0){
+      this.remove(theCartItem);
+    }else{
+      this.computCartTotals();
+  }
+}
+
+remove(theCartItem: CartItem) {
+    // get index of item in the array
+    const itemIndex = this.cartItems.findIndex(tempCartItem => tempCartItem.id == theCartItem.id);
+
+    // if found, remove the item from the array at the given index
+    if(itemIndex > -1){
+      this.cartItems.splice(itemIndex,1);
+      this.computCartTotals();
+    }
+
+
   }
 
 
