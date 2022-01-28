@@ -9,6 +9,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class CheckoutComponent implements OnInit {
 
   checkoutFormGroup: FormGroup;
+  billingAddressStates: [];
+  shippingAddressStates: [];
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -49,5 +51,21 @@ export class CheckoutComponent implements OnInit {
     console.log("The email address is: " + this.checkoutFormGroup.get('customer')!.value.email);
 
   }
+
+copyShippingAddressToBillingAddress(event){
+
+  // takes the values in shipping address and copies it over to billing address whenever the box is checked
+  if(event.target.checked){
+    this.checkoutFormGroup.controls['billingAddress']
+        .setValue(this.checkoutFormGroup.controls['shippingAddress'].value);
+
+    this.billingAddressStates = this.shippingAddressStates;
+  }
+  else{
+      this.checkoutFormGroup.controls['billingAddress'].reset();
+
+      this.billingAddressStates = [];
+  }
+}
 
 }
